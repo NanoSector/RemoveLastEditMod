@@ -23,11 +23,15 @@ function rlem_permissions(&$permissionGroups, &$permissionList)
         $permissionGroups['membergroup']['simple'] = array('rlem_simple');
         $permissionGroups['membergroup']['classic'] = array('rlem_classic');
         
-        // Remove their own edit sign.
-        $permissionList['membergroup']['rlem_do_own'] = array(false, 'rlem_classic', 'rlem_simple');
+        // A list.
+        $permissions = array(
+                'rlem_do_own',
+                'rlem_do_any',
+        );
         
-        // Remove others' edit sign.
-        $permissionList['membergroup']['rlem_do_any'] = array(false, 'rlem_classic', 'rlem_simple');
+        // Add them.
+        foreach ($permissions as $perm)
+                $permissionList['membergroup'][$perm] = array(false, 'rlem_classic', 'rlem_simple');
 }
 
 // Just positions as a bridge between rlem_do and the topic view. Nothing more really.
@@ -69,9 +73,6 @@ function rlem_do($postid)
                 
         // Grab the title from the result.
         $post = $smcFunc['db_fetch_assoc']($result);
-        
-        // Free you go!
-        $smcFunc['db_free_result']($result);
                 
         // Are we allowed to do our own post, though? If we get past here we're safe.
         if (allowedTo('rlem_do_any') || (allowedTo('rlem_do_own') && $context['user']['id'] == $post['id_member']))
