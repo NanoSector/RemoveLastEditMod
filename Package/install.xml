@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE modification SYSTEM "http://www.simplemachines.org/xml/modification">
+<!--Generated with Mod Manager (c) 2013 Yoshi2889-->
+<modification xmlns:smf="http://www.simplemachines.org/" xmlns="http://www.simplemachines.org/xml/modification">
+    <id>Yoshi2889:RemoveLastEditMod</id>
+    <version>0.2.5</version>
+    <file name="$themedir/Display.template.php">
+        <operation>
+            <search position="replace"><![CDATA[&#171; <em>', $txt['last_edit'], ': ', $message['modified']['time'], ' ', $txt['by'], ' ', $message['modified']['name'], '</em> &#187;';]]></search>
+            <add><![CDATA[&#171; <em>', $txt['last_edit'], ': ', $message['modified']['time'], ' ', $txt['by'], ' ', $message['modified']['name'];
+		
+		// Dirty yet beautiful edits.
+		if ($settings['show_modify'] && !empty($message['modified']['name']) && $message['can_rlem'])
+			echo '; <a href="', $scripturl, '?action=unsetedittime;post=', $message['id'], '">', $txt['remove_edit_sign'], '</a>';
+		
+		if ($settings['show_modify'] && !empty($message['modified']['name']))	
+			echo '</em> &#187;';]]></add>
+        </operation>
+    </file>
+    <file name="$sourcedir/Display.php">
+        <operation>
+            <search position="before"><![CDATA['can_see_ip' => allowedTo('moderate_forum') || ($message['id_member'] == $user_info['id'] && !empty($user_info['id'])),]]></search>
+            <add><![CDATA[
+		'id_member' => $message['id_member'],
+		'can_rlem' => allowedTo('rlem_do_any') || (($message['id_member'] == $context['user']['id']) && allowedTo('rlem_do_own')),]]></add>
+        </operation>
+    </file>
+    <file name="$languagedir/Modifications.english.php">
+        <operation>
+            <search position="end" />
+            <add><![CDATA[// Remove "Last edit" mod
+
+$txt['remove_edit_sign'] = 'remove this sign';
+
+$txt['remove_last_edited_error_1'] = 'Invalid resources in function rlem_do, Subs-RemoveLastEditMod.php';
+
+$txt['remove_last_edited_error_2'] = 'You are not allowed to perform this action.';
+
+$txt['remove_last_edited_error_3'] = 'Invalid action call.';
+
+$txt['permissionname_rlem_do'] = 'Remove \'Last edit by ...\' from posts';
+
+$txt['permissionname_rlem_do_own'] = 'Remove \'Last edit by ...\' from own posts';
+
+$txt['permissionname_rlem_do_any'] = 'Remove \'Last edit by ...\' from any post';
+
+$txt['permissiongroup_simple_rlem_simple'] = 'Remove Last Edit Mod permissions';
+
+$txt['permissiongroup_rlem_classic'] = 'Remove Last Edit Mod permissions';]]></add>
+        </operation>
+    </file>
+    <file name="$languagedir/Modifications.dutch.php" error="skip">
+        <operation>
+            <search position="end" />
+            <add><![CDATA[// Remove "Last edit" mod
+
+$txt['remove_edit_sign'] = 'verwijder dit bericht';
+
+$txt['remove_last_edited_error_1'] = 'Foutieve gegevens in functie rlem_do, Subs-RemoveLastEditMod.php';
+
+$txt['remove_last_edited_error_2'] = 'Je mag deze actie niet uitvoeren.';
+
+$txt['remove_last_edited_error_3'] = 'Foutieve actie opgeroepen.';
+
+$txt['permissionname_rlem_do'] = 'Verwijder \'Laatst bewerkt door ...\' van berichten';
+
+$txt['permissionname_rlem_do_own'] = 'Verwijder \'Laatst bewerkt door ...\' van eigen berichten';
+
+$txt['permissionname_rlem_do_any'] = 'Verwijder \'Laatst bewerkt door ...\' van alle berichten';
+
+$txt['permissiongroup_simple_rlem_simple'] = 'Remove Last Edit Mod permissies';
+
+$txt['permissiongroup_rlem_classic'] = 'Remove Last Edit Mod permissies';]]></add>
+        </operation>
+    </file>
+    <file name="$languagedir/Modifications.serbian_latin.php" error="skip">
+        <operation>
+            <search position="end" />
+            <add><![CDATA[// Remove "Last edit" mod
+
+$txt['remove_edit_sign'] = 'ukloni ovu oznaku';
+
+$txt['remove_last_edited_error_1'] = 'Nevažeći resursi u funkciji  rlem_do, Subs-RemoveLastEditMod.php';
+
+$txt['remove_last_edited_error_2'] = 'Nije vam dozvoljeno da sprovedete ovu akciju.';
+
+$txt['remove_last_edited_error_3'] = 'Pozvana nevažeća akcija.';
+
+$txt['permissionname_rlem_do'] = 'Ukloni \'Zadnja promena od ...\' iz poruka';
+$txt['permissionname_rlem_do_own'] = 'Ukloni \'Zadnja promena od ...\' iz svojih poruka';
+
+$txt['permissionname_rlem_do_any'] = 'Ukloni \'Zadnja promena od...\' iz bilo koje poruke';
+
+$txt['permissiongroup_simple_rlem_simple'] = 'Ukloni Zadnja Promena Mod dozvole';
+$txt['permissiongroup_rlem_classic'] = 'Ukloni Zadnja Promena Mod dozvole';]]></add>
+        </operation>
+    </file>
+    <file name="$languagedir/Modifications.serbian_latin-utf8.php" error="skip">
+        <operation>
+            <search position="end" />
+            <add><![CDATA[// Remove "Last edit" mod
+$txt['remove_edit_sign'] = 'ukloni ovu oznaku';
+
+$txt['remove_last_edited_error_1'] = 'Nevažeći resursi u funkciji  rlem_do, Subs-RemoveLastEditMod.php';
+
+$txt['remove_last_edited_error_2'] = 'Nije vam dozvoljeno da sprovedete ovu akciju.';
+
+$txt['remove_last_edited_error_3'] = 'Pozvana nevažeća akcija.';
+$txt['permissionname_rlem_do'] = 'Ukloni \'Zadnja promena od ...\' iz poruka';
+
+$txt['permissionname_rlem_do_own'] = 'Ukloni \'Zadnja promena od ...\' iz svojih poruka';
+
+$txt['permissionname_rlem_do_any'] = 'Ukloni \'Zadnja promena od...\' iz bilo koje poruke';
+
+$txt['permissiongroup_simple_rlem_simple'] = 'Ukloni Zadnja Promena Mod dozvole';
+
+$txt['permissiongroup_rlem_classic'] = 'Ukloni Zadnja Promena Mod dozvole';]]></add>
+        </operation>
+    </file>
+    <file name="$languagedir/Modifications.serbian_cyrillic.php" error="skip">
+        <operation>
+            <search position="end" />
+            <add><![CDATA[// Remove "Last edit" mod
+
+$txt['remove_edit_sign'] = 'уклони ову ознаку';
+
+$txt['remove_last_edited_error_1'] = 'Неважећи ресурси у функцији  rlem_do, Subs-RemoveLastEditMod.php';
+
+$txt['remove_last_edited_error_2'] = 'Није вам дозвољено да спроведете ову акцију.';
+
+$txt['remove_last_edited_error_3'] = 'Позвана неважећа акција.';
+
+$txt['permissionname_rlem_do'] = 'Уклони \'Задња промена од ...\' из порука';
+
+$txt['permissionname_rlem_do_own'] = 'Уклони \'Задња промена од ...\' из својих порука';
+
+$txt['permissionname_rlem_do_any'] = 'Уклони \'Задња промена од...\' из било које поруке';
+
+$txt['permissiongroup_simple_rlem_simple'] = 'Уклони Задња Промена Мод дозволе';
+
+$txt['permissiongroup_rlem_classic'] = 'Уклони Задња Промена Мод дозволе';]]></add>
+        </operation>
+    </file>
+    <file name="$languagedir/Modifications.serbian_cyrillic-utf8.php" error="skip">
+        <operation>
+            <search position="end" />
+            <add><![CDATA[// Remove "Last edit" mod
+
+$txt['remove_edit_sign'] = 'уклони ову ознаку';
+
+$txt['remove_last_edited_error_1'] = 'Неважећи ресурси у функцији  rlem_do, Subs-RemoveLastEditMod.php';
+
+$txt['remove_last_edited_error_2'] = 'Није вам дозвољено да спроведете ову акцију.';
+
+$txt['remove_last_edited_error_3'] = 'Позвана неважећа акција.';
+
+$txt['permissionname_rlem_do'] = 'Уклони \'Задња промена од ...\' из порука';
+
+$txt['permissionname_rlem_do_own'] = 'Уклони \'Задња промена од ...\' из својих порука';
+
+$txt['permissionname_rlem_do_any'] = 'Уклони \'Задња промена од...\' из било које поруке';
+
+$txt['permissiongroup_simple_rlem_simple'] = 'Уклони Задња Промена Мод дозволе';
+$txt['permissiongroup_rlem_classic'] = 'Уклони Задња Промена Мод дозволе';]]></add>
+        </operation>
+    </file>
+    <file name="$languagedir/Modifications.croatian.php" error="skip">
+        <operation>
+            <search position="end" />
+            <add><![CDATA[// Remove "Last edit" mod
+
+$txt['remove_edit_sign'] = 'ukloni ovu oznaku';
+
+$txt['remove_last_edited_error_1'] = 'Nevažeći resursi u funkciji  rlem_do, Subs-RemoveLastEditMod.php';
+
+$txt['remove_last_edited_error_2'] = 'Nije vam dozvoljeno da sprovedete ovu akciju.';
+
+$txt['remove_last_edited_error_3'] = 'Pozvana nevažeća akcija.';
+
+$txt['permissionname_rlem_do'] = 'Ukloni \'Zadnja promjena od ...\' iz poruka';
+
+$txt['permissionname_rlem_do_own'] = 'Ukloni \'Zadnja promjena od ...\' iz svojih poruka';
+$txt['permissionname_rlem_do_any'] = 'Ukloni \'Zadnja promjena od...\' iz bilo koje poruke';
+$txt['permissiongroup_simple_rlem_simple'] = 'Ukloni Zadnja Promjena Mod dozvole';
+
+$txt['permissiongroup_rlem_classic'] = 'Ukloni Zadnja Promjena Mod dozvole';]]></add>
+        </operation>
+    </file>
+    <file name="$languagedir/Modifications.croatian-utf8.php" error="skip">
+        <operation>
+            <search position="end" />
+            <add><![CDATA[// Remove "Last edit" mod
+
+$txt['remove_edit_sign'] = 'ukloni ovu oznaku';
+
+$txt['remove_last_edited_error_1'] = 'Nevažeći resursi u funkciji  rlem_do, Subs-RemoveLastEditMod.php';
+
+$txt['remove_last_edited_error_2'] = 'Nije vam dozvoljeno da sprovedete ovu akciju.';
+
+$txt['remove_last_edited_error_3'] = 'Pozvana nevažeća akcija.';
+
+$txt['permissionname_rlem_do'] = 'Ukloni \'Zadnja promjena od ...\' iz poruka';
+
+$txt['permissionname_rlem_do_own'] = 'Ukloni \'Zadnja promjena od ...\' iz svojih poruka';
+
+$txt['permissionname_rlem_do_any'] = 'Ukloni \'Zadnja promjena od...\' iz bilo kojie poruke';
+
+$txt['permissiongroup_simple_rlem_simple'] = 'Ukloni Zadnja Promjena Mod dozvole';
+
+$txt['permissiongroup_rlem_classic'] = 'Ukloni Zadnja Promjena Mod dozvole';]]></add>
+        </operation>
+    </file>
+</modification>
